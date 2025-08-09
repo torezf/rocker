@@ -1,4 +1,5 @@
-class Admin::ArticlesController < ApplicationController
+module Admin
+class ArticlesController < ApplicationController
   before_action :set_admin_article, only: %i[ show edit update destroy ]
 
   # GET /admin/articles or /admin/articles.json
@@ -67,4 +68,5 @@ class Admin::ArticlesController < ApplicationController
     def admin_article_params
       params.expect(article: [ :title, :description ])
     end
+end
 end
