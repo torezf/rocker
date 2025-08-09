@@ -8,3 +8,10 @@
  *
  * Consider organizing styles into separate files for maintainability.
  */
+
+ body {
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 1rem;
+    color: white;
+    background-color: black;
+ }
