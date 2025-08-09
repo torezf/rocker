@@ -1,15 +1,11 @@
 <p style="color: green"><%= notice %></p>
-
-<% content_for :title, "Articles" %>
-
-<h1>Articles</h1>
-
-<div id="articles">
-  <% @articles.each do |article| %>
-    <%= render article %>
-    <p>
-      <%= link_to "Show this article", article , class: "btn-basic" %>
-    </p>
-  <% end %>
+<div class="container p-10">
+  <div>
+    <div class="text-2xl font-bold text-center">Articles</div>
+  </div>
+  <div id="articles" class="flex grid-col gap-10 items-center justify-center mt-20">
+      <% @articles.each do |article| %>
+        <%= render article %>
+      <% end %>
+  </div>
 </div>
-
