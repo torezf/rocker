@@ -2,16 +2,13 @@
 <div class="min-h-screen  flex items-center justify-center bg-gradient-to-br from-sky-100 via-indigo-100 to-pink-100 py-10 px-4">
   <div class="max-w-[80vw] w-full p-8 bg-[#424242] backdrop-blur-xl border border-white/30 rounded-2xl shadow-glow-lg">
     <h1 class="text-4xl font-extrabold text-sky-500 mb-8 text-center">Editing Article</h1>
-
     <%= render "form", article: @article %>
-
     <div class="mt-8 flex justify-center gap-4">
       <%= link_to [:admin, @article],
           class: "inline-flex items-center px-5 py-2 border border-sky-600 text-sky-600 font-semibold rounded-xl 
                  hover:bg-sky-600 hover:text-white transition-colors duration-300 shadow-md hover:shadow-lg" do %>
         Show this article
       <% end %>
-
       <%= link_to admin_articles_path,
           class: "inline-flex items-center px-5 py-2 border border-sky-600 text-sky-600 font-semibold rounded-xl 
                  hover:bg-sky-600 hover:text-white transition-colors duration-300 shadow-md hover:shadow-lg" do %>
