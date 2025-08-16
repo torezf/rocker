@@ -1,9 +1,19 @@
 <% content_for :title, "New article" %>
-
-<h1>New article</h1>
-
-<%= render "admin/articles/form", article: @article %>
-
-<div>
-  <%= link_to "Back to articles", admin_articles_path %>
+<div class="min-h-screen bg-base-200 flex flex-col items-center py-10">
+  <!-- Page Header -->
+  <h1 class="text-3xl font-bold mb-6 text-primary">
+    ✍️ New Article
+  </h1>
+  <!-- Card Form -->
+  <div class="card w-full max-w-2xl shadow-xl bg-base-100">
+    <div class="card-body">
+      <%= render "admin/articles/form", article: @article %>
+    </div>
+  </div>
+  <!-- Back Button -->
+  <div class="mt-6">
+    <%= link_to "← Back to articles", 
+                admin_articles_path, 
+                class: "btn btn-outline btn-primary" %>
+  </div>
 </div>

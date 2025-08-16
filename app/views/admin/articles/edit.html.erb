@@ -1,12 +1,24 @@
 <% content_for :title, "Editing article" %>
-
-<h1>Editing article</h1>
-
-<%= render "form", article: @articles %>
-
-<br>
-
-<div>
-  <%= link_to "Show this article", [:admin, @articles] %> |
-  <%= link_to "Back to articles", admin_articles_path %>
+<div class="min-h-screen bg-base-200 py-10">
+  <div class="max-w-3xl mx-auto">
+    <!-- Page Title -->
+    <h1 class="text-3xl font-bold text-primary mb-6">
+      ✏️ Editing Article
+    </h1>
+    <!-- Form Card -->
+    <div class="card bg-base-100 shadow-xl">
+      <div class="card-body">
+        <%= render "form", article: @articles %>
+      </div>
+    </div>
+    <!-- Actions -->
+    <div class="flex justify-between mt-6">
+      <%= link_to "👀 Show this article", 
+                  [:admin, @articles], 
+                  class: "btn btn-outline btn-primary" %>
+      <%= link_to "← Back to articles", 
+                  admin_articles_path, 
+                  class: "btn btn-outline" %>
+    </div>
+  </div>
 </div>

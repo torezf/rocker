@@ -1,11 +1,19 @@
-<p style="color: green"><%= notice %></p>
-<div class="container p-10">
-  <div>
-    <div class="text-2xl font-bold text-center">Articles</div>
+<% if notice.present? %>
+  <div class="alert alert-success shadow-lg mb-6">
+    <span><%= notice %></span>
   </div>
-  <div id="articles" class="flex grid-col gap-10 items-center justify-center mt-20">
-      <% @articles.each do |article| %>
-        <%= render article %>
-      <% end %>
+<% end %>
+
+<div class="container mx-auto px-6 py-10">
+  <!-- Title -->
+  <h1 class="text-3xl font-bold text-center text-primary">
+    📰 Articles
+  </h1>
+
+  <!-- Articles Grid -->
+  <div id="articles" class="grid gap-8 mt-10 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+    <% @articles.each do |article| %>
+      <%= render article %>
+    <% end %>
   </div>
 </div>

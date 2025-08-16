@@ -1,18 +1,29 @@
-<div class="flex flex-col min-w-[300px] min-h-[200px] bg-white p-7 border-1 rounded-xl ">
-  <% image_tag "image1.png" %>
-  <p>
-    <strong>Title:</strong>
-    <%= article.title %>
-  </p>
-  <p>
-    <strong>Description:</strong>
-    <%= article.description %>
-  </p>
-  <strong> Cover Image :</strong>
+<div class="card w-full bg-base-100 shadow-md hover:shadow-xl transition">
+  <!-- Cover Image -->
   <% if article.cover_image.attached? %>
-    <%= image_tag article.cover_image %>
+    <figure>
+      <%= image_tag article.cover_image, class: "w-full h-48 object-cover rounded-t-xl" %>
+    </figure>
   <% else %>
-    No cover image
+    <figure class="bg-base-200 flex items-center justify-center h-48 rounded-t-xl">
+      <span class="text-gray-400">No cover image</span>
+    </figure>
   <% end %>
-  <%= link_to "Show this article", article %>
+
+  <!-- Card Body -->
+  <div class="card-body">
+    <h2 class="card-title text-primary">
+      <%= article.title %>
+    </h2>
+
+    <p class="line-clamp-3 text-gray-600">
+      <%= article.description %>
+    </p>
+
+    <div class="card-actions justify-end mt-4">
+      <%= link_to "Read More", 
+                  article, 
+                  class: "btn btn-sm btn-outline btn-primary" %>
+    </div>
+  </div>
 </div>

@@ -1,7 +1,16 @@
-<p style="color: green"><%= notice %></p>
+<% if notice.present? %>
+  <div class="alert alert-success shadow-lg mb-6">
+    <span><%= notice %></span>
+  </div>
+<% end %>
+<div class="bg-base-100 shadow-xl">
 
-<%= render @article %>
-
-<div>
-  <%= link_to "Back to articles", articles_path %>
+  <!-- แสดงข้อมูลบทความ -->
+  <%= render @article %>
+  <!-- ปุ่ม back -->
+  <div class="card-actions justify-end mt-6">
+    <%= link_to "← Back to articles", 
+                  articles_path, 
+                  class: "btn btn-outline" %>
+  </div>
 </div>

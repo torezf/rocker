@@ -44,7 +44,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_09_095415) do
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "status"
+    t.integer "status", default: 0, null: false
   end
 
   create_table "sessions", force: :cascade do |t|

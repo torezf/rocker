@@ -1,12 +1,10 @@
-<div id="<%= dom_id article %>">
-  <p>
-    <strong>Title:</strong>
-    <%= article.title %>
-  </p>
-
-  <p>
-    <strong>Description:</strong>
-    <%= article.description %>
-  </p>
-
+<div id="<%= dom_id article %>" class="card bg-base-100 shadow-md">
+  <div class="card-body">
+    <h2 class="card-title text-primary">
+      <%= article.title %>
+    </h2>
+    <p class="text-gray-600">
+      <%= article.description %>
+    </p>
+  </div>
 </div>
