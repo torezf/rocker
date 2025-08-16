@@ -1,12 +1,18 @@
 Rails.application.routes.draw do
+  resources :comments
   resource :session
   resources :passwords, param: :token
   resources :articles, only: [ :index, :show ]
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
-  namespace :admin do
-    resources :articles
 
+  namespace :admin do
+    resources :articles do
+      member do
+        patch :approve
+        patch :reject
+      end
+    end
     root "articles#index"
   end
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

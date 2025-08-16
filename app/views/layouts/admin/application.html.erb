@@ -7,25 +7,38 @@
     <meta name="mobile-web-app-capable" content="yes">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= yield :head %>
-
     <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
     <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
-
     <link rel="icon" href="/icon.png" type="image/png">
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icon.png">
-
     <%# Includes all stylesheet files in app/assets/stylesheets %>
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
-
-  <body class="bg-red-100">
-    <nav>
-        <%= button_to "Log out", session_path, method: :delete if authenticated?%>
-    </nav>
+  <body class="min-h-screen bg-gray-50">
+    <!-- Navbar -->
+    <div class="navbar z-10  fixed top-0 w-full bg-base-100 shadow-sm h-16">
+      <div class="navbar-start gap-5">
+        <%= image_tag "https://yt3.googleusercontent.com/SOyiE7wlKWeZJtssbX3Co6oIZ7xm46b6hq71GK306jcE0cbyYa6LOgK0ATDYOOZSqjDnjjM=s160-c-k-c0x00ffffff-no-rj", 
+            alt: "Logo image", 
+            class: "rounded-full w-12 h-12" %>
+        <a class="text-xl hover:text-pink-500" href="/admin/articles">ODDS CASTS</a>
+      </div>
+      <div class="navbar-center">
+        <p class="text-xl">Administration</p>
+      </div>
+      <div class="navbar-end space-x-2">
+        <% if authenticated? %>
+          <%= button_to "Log out", session_path, method: :delete,
+          class: "bg-gradient-to-r from-pink-500 to-purple-600 hover:from-purple-500 hover:to-pink-600 text-white font-semibold py-2 px-6 rounded-xl shadow-lg glow transition-all duration-300" %>
+        <% end %>
+      </div>
+    </div>
+    <!-- Main content -->
+    <main class=" pt-20 pb-40">
       <%= yield %>
+    </main>
   </body>
 </html>

@@ -3,7 +3,7 @@ class ArticlesController < ApplicationController
 
   # GET /articles or /articles.json
   def index
-    @articles = Article.all
+    @articles = Article.where(status: "published").order(created_at: :desc)
   end
 
   # GET /articles/1 or /articles/1.json
@@ -65,6 +65,6 @@ class ArticlesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def article_params
-      params.expect(article: [ :title, :description, :cover_image ])
+      params.expect(article: [ :title, :description ])
     end
 end

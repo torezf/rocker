@@ -1,24 +1,51 @@
-<% if notice.present? %>
-  <div class="alert alert-success shadow-lg mb-6">
-    <span><%= notice %></span>
+<div class="max-w-4xl mx-auto mt-10 px-4 text-white">
+  <% if notice %>
+    <p class="mb-6 text-green-400 font-medium text-center glow"><%= notice %></p>
+  <% end %>
+  <h1 class="text-3xl break-words text-black font-extrabold mb-8 text-start glow">
+    <%= @article.title %>
+  </h1>
+  <!-- รูปภาพถ้ามี -->
+  <% if @article.cover_image.attached? %>
+    <%= image_tag url_for(@article.cover_image), alt: @article.title,
+          class: "h-[50vw] w-auto mx-auto object-cover rounded-2xl mb-8 border border-white/20 shadow-lg backdrop-blur-md" %>
+  <% elsif @article.cover_image.present? %>
+    <%= image_tag @article.cover_image, alt: @article.title,
+          class: "w-full h-full object-cover rounded-2xl mb-8 border border-white/20 shadow-lg backdrop-blur-md" %>
+  <% end %>
+  <!-- เนื้อหาบทความ -->
+  <div class="prose prose-invert text-[#424242] max-w-none mb-12 mx-auto break-words whitespace-normal">
+    <%= simple_format(@article.description) %>
   </div>
-<% end %>
-<div class="card bg-base-100 shadow-xl">
-  <div class="card-body">
-    <%= render @articles %>
-    <div class="card-actions justify-end mt-6">
-      <%= link_to "✏️ Edit", 
-                  edit_admin_article_path(@articles), 
-                  class: "btn btn-outline btn-primary" %>
-      <%= link_to "← Back", 
-                  admin_articles_path, 
-                  class: "btn btn-outline" %>
-      <%= button_to "🗑️ Destroy", 
-                    [:admin, @articles], 
-                    method: :delete, 
-                    data: { confirm: "Are you sure?" },
-                    class: "btn btn-error" %>
+  <!-- แสดงสถานะบทความ -->
+  <div class="mb-6 flex items-center gap-3">
+    <span class="text-gray-400 font-medium">Status:</span>
+    <span class="px-3 py-1 rounded-full text-sm font-semibold 
+      <%= case @article.status
+          when "draft" then "bg-gray-700 text-gray-200"
+          when "waiting_for_review" then "bg-yellow-600 text-yellow-200"
+          when "published" then "bg-green-600 text-green-200"
+          else "bg-gray-600 text-gray-300"
+          end %> glow">
+      <%= @article.status.humanize %>
+    </span>
+  </div>
+  <% if @article.status == "waiting_for_review" %>
+    <div class="mb-6 flex gap-4">
+      <%= button_to "Approve", approve_admin_article_path(@article), method: :patch,
+          data: { confirm: "Approve this article?" },
+          class: "bg-gradient-to-r from-green-400 to-green-600 hover:from-green-500 hover:to-green-700 text-white font-semibold py-2 px-6 rounded-xl shadow-lg glow transition-all duration-300" %>
+      <%= button_to "Reject", reject_admin_article_path(@article), method: :patch,
+          data: { confirm: "Reject and move back to draft?" },
+          class: "bg-gradient-to-r from-red-400 to-red-600 hover:from-red-500 hover:to-red-700 text-white font-semibold py-2 px-6 rounded-xl shadow-lg glow transition-all duration-300" %>
     </div>
+  <% end %>
+  <div class="flex flex-wrap justify-start gap-6 mb-20">
+    <%= link_to "Edit this article", edit_admin_article_path(@article),
+        class: "bg-gradient-to-r from-pink-500 to-purple-600 hover:from-purple-500 hover:to-pink-600 text-white font-semibold py-2 px-6 rounded-xl shadow-lg glow transition-all duration-300" %>
+    <%= link_to "Back to articles", admin_articles_path,
+        class: "bg-gray-700 hover:bg-gray-600 text-white font-semibold py-2 px-6 rounded-xl shadow transition-all duration-300" %>
+    <%= button_to "Destroy this article", [:admin, @article], method: :delete, data: { confirm: "Are you sure?" },
+        class: "bg-gradient-to-r from-red-500 to-red-700 hover:from-red-600 hover:to-red-800 text-white font-semibold py-2 px-6 rounded-xl shadow-lg glow transition-all duration-300" %>
   </div>
 </div>
-ƒ
